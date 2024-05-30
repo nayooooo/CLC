@@ -2,6 +2,8 @@
 
 能够存放任意数据的单向链表
 
+[使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/master/test/Core/Core/main.c)
+
 ## 谓词和事件回调函数指针
 
 | 名称 | 参数 | 返回值 | 描述 |
