@@ -1,8 +1,20 @@
-# AnyDataList
+# GenericList
 
 能够存放任意数据的单向链表
 
 [使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/master/test/Core/Core/main.c)
+
+模板式单向链表能够存放各种类型的数据，在实际结构中使用`void* data`指针进行管理。
+
+    struct list
+    {
+        void *data;
+        struct list *next;
+    };
+
+由于`list.data`是`void*`类型，没办法在指针库中对数据进行更多的操作，因此需要使用时传入谓词或事件回调函数等对数据进行操作。
+
+库中链表的操作函数如下：
 
 ## 谓词和事件回调函数指针
 
