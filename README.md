@@ -4,7 +4,7 @@
 
 [使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/master/test/Core/Core/main.c)
 
-模板式单向链表能够存放各种类型的数据，在实际结构中使用`void* data`指针进行管理。
+类式链表容器能够存放各种类型的数据，在实际结构中使用`void* data`指针进行管理。
 
     struct list
     {
@@ -12,18 +12,16 @@
         struct list *next;
     };
 
-由于`list.data`是`void*`类型，没办法在指针库中对数据进行更多的操作，因此需要使用时传入谓词或事件回调函数等对数据进行操作。
-
-库中链表的操作函数如下：
+由于`list.data`是`void*`类型，没办法在指针中对数据进行更多的操作，因此需要使用时传入谓词或事件回调函数等对数据进行操作。
 
 ## 谓词和事件回调函数指针
 
 | 名称 | 参数 | 返回值 | 描述 |
 | - | - | - | - |
 | list_pred | list_node,void* | bool | 谓词，通常用于确定是否是指定节点，也可对节点数据进行操作 |
-| list_node_data_construct_cb | void* | bool | 节点参数构造函数 |
-| list_node_data_deconstruct_cb | void* | bool | 节点参数析构函数 |
-| list_event_cb | list_node,void* | bool | 事件回调函数，可用于操作节点参数 |
+| list_node_data_construct_cb | void* | bool | 节点数据构造函数 |
+| list_node_data_deconstruct_cb | void* | bool | 节点数据析构函数 |
+| list_event_cb | list_node,void* | bool | 事件回调函数，可用于操作节点数据 |
 
 ## 默认谓词和回调函数
 
