@@ -1,6 +1,6 @@
-# GenericList
+# CLC(Class List Container)
 
-能够存放任意数据的单向链表
+类式链表容器
 
 [使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/master/test/Core/Core/main.c)
 
