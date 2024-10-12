@@ -2,7 +2,7 @@
 
 类式链表容器
 
-[使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/master/test/Core/Core/main.c)
+[使用示例（usage example）](https://github.com/nayooooo/FuzzyControl/blob/Building-SingleStructForFuzzyControler/test/list/list/main.c)
 
 类式链表容器能够存放各种类型的数据，在实际结构中使用`void* data`指针进行管理。
 
