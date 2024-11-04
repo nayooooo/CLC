@@ -63,3 +63,9 @@
 | list_get_last_node | list_head | list_node | 获取链表中的最后一个节点，如果链表是空的，则返回`nullptr` |
 | list_get_node_data | list_head,list_index | void* | 获取指定索引处节点的数据 |
 | list_get_node_data_if | list_head,void*,list_pred | void* | 获取满足谓词描述的节点的数据 |
+
+## 链表嵌套API
+
+| 名称 | 参数 | 返回值 | 描述 |
+| - | - | - | - |
+| list_push_list | list_head,list_head* | bool | 向链表中插入一个链表结点，如果传入正确的链表源，则创建一个链表源的浅拷贝，否则会动态申请一个空链表 |

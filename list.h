@@ -11,6 +11,10 @@
  *          options for constructing callback functions and destructing callback
  *          functions, making it convenient for you to operate on deeply copied node
  *          data.
+ *          Of course, whether it is a deep copy or a shallow copy depends on your
+ *          specific application, such as implementing deep copy in constructing
+ *          callback functions or adding a shallow copy API in this library modeled
+ *          after "list_push_list".
  * @version 1.0.0
  * @date 2024-05-21
  * 
@@ -25,24 +29,19 @@
 extern "C" {
 #endif
 
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdlib.h>
-
-#include <stdlib.h>
-#include <string.h>
-
-#define __LIST_MALLOC malloc
-#define __LIST_FREE free
-
-#define __LIST_MEMCPY memcpy
-
-#define __LIST_STRLEN strlen
+#include "./../config/fc_config.h"
+#define __LIST_MALLOC fc_malloc
+#define __LIST_FREE fc_free
+#define __LIST_MEMCPY fc_memcpy
+#define __LIST_STRLEN fc_strlen
 
 /*==================================================================================
     structure
 ==================================================================================*/
 
+// You can use the following code to create an alias for a list
+//      list_head a = list_create();
+//      list_head b = a;
 struct list
 {
     void *data;
@@ -298,8 +297,8 @@ bool list_swap_if(list_head l, void *data1, void *data2, list_pred pred1, list_p
  * @param l The linked list to be traversed
  * @param data user data
  * @param event_cb Event callbacks that each node needs to execute, you must give
- * @param true      success
- * @param false     failed
+ * @return true     success
+ * @return false    failed
  */
 bool list_trav(list_head l, void *data, list_event_cb event_cb);
 
@@ -351,6 +350,29 @@ void* list_get_node_data(list_head l, list_index ind);
  *      others      The data of the node
  */
 void* list_get_node_data_if(list_head l, void *data, list_pred pred);
+
+/*==================================================================================
+    parent child linked list operation
+==================================================================================*/
+
+/**
+ * @brief Add a node with the list as its data to the list(shallow copy, if there
+ *        is no copy source, apply for a list)
+ * @details Since the template is a pointer to a linked list and the requested data
+ *          is also a reference to that linked list, this API is a shallow copy.
+ * @pop You can use "list_pop" to pop shallow copy list-node, or use "list_pop_if"
+ *      to pop list-node requested by "list_push_list".
+ *
+ * @param l The list
+ * @param sl List to be added, if sl or *sl is nullptr, add a empty list
+ * @return true     success
+ * @return false    failed
+ */
+bool list_push_list(list_head l, list_head* sl);
+
+/*==================================================================================
+    same level linked list operation
+==================================================================================*/
 
 #ifdef __cplusplus
 } /*extern "C"*/
