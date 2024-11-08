@@ -29,11 +29,18 @@
 extern "C" {
 #endif
 
-#include "./../config/fc_config.h"
-#define __LIST_MALLOC fc_malloc
-#define __LIST_FREE fc_free
-#define __LIST_MEMCPY fc_memcpy
-#define __LIST_STRLEN fc_strlen
+#include <stdbool.h>
+
+#include <stdlib.h>
+#include <string.h>
+#define __LIST_MALLOC malloc
+#define __LIST_FREE free
+#define __LIST_MEMCPY memcpy
+#define __LIST_STRLEN strlen
+
+#ifndef nullptr
+    #define nullptr ((void*)0)
+#endif // !nullptr
 
 /*==================================================================================
     structure
