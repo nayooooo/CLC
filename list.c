@@ -358,13 +358,10 @@ bool list_push_list(list_head l, list_head* sl)
     // shallow copy a list
     else al = *sl;
     *(list_head*)(ln->data) = al;
-    
-    if (0)
-    {
-    _error_out:
-        list_pop(l);
-        return false;
-    }
 
     return true;
+
+_error_out:
+    list_pop(l);
+    return false;
 }
